@@ -24,32 +24,27 @@ typedef vector<vi> vvi;
 typedef vector<pii> vpii;
 
 void solve(){
-	int n, k;
-	cin >> n >> k;
-	vector<string> v_s(n);
-	map<string, int> m; 
+	string s;
+	cin >> s;
+	int n = s.length();
+	if (n % 2 == 1){
+	    cout << "NO\n";
+	    return ;
+	}
+	map<char, int> m1;
 	REPN(i, n){
-	    cin >> v_s[i];
-	    m[v_s[i]] = -1;
+	    m1[s[i]] += 1;
 	}
-	REPN(i, k){
-	    int l;
-	    cin >> l;
-	    REPN(j, l){
-	        string s;
-	        cin >> s;
-	        m[s] = 1;
+	bool ans = false;
+	for (auto i : m1){
+	   // cout << i.first << " " << i.second << " " << n << "\n";
+	    if (2 * i.second == n){
+	        ans = true;
+	        break;
 	    }
 	}
-	REPN(i, n){
-	    if (m[v_s[i]] == 1){
-	        cout << "YES ";
-	    }
-	    else{
-	        cout << "NO ";
-	    }
-	}
-	cout << "\n";
+	if (ans) cout << "YES\n";
+	else cout << "NO\n";
 }
 
 int main(int argc, char const *argv[])
